@@ -1,0 +1,22 @@
+{
+    "layersBasePath": "layers",
+    "outputBasePath": "output",
+    "totalImages": 5,
+    "imageOptions": {
+        "outputPath": "images",
+        "format": "jpg",
+        "jpgQuality": 75,
+        "width": 2048,
+        "height": 2048
+    },
+    "thumbnailOptions": {
+        "outputPath": "thumbnails",
+        "format": "jpg",
+        "jpgQuality": 75,
+        "width": 400,
+        "height": 400
+    },
+    "metadataOptions": {
+        "outputPath": "metadata"
+    }
+}

@@ -8,6 +8,10 @@ __pycache__/
 
 output/
 layers/
+data
+
+.idea/
+.DS_Store
 
 # Distribution / packaging
 .Python

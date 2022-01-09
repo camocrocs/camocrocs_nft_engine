@@ -1,5 +1,20 @@
 {
-    "layersBasePath": "layers",
+    "layers": {
+        "layersBasePath": "layers",
+        "rarityDelimiter": "#",
+        "layersInOrder": [
+            {"path":  "Background"},
+            {"path":  "Face"},
+            {"path":  "Eyes"},
+            {"path":  "Head"},
+            {"path":  "Mouth"},
+            {"path":  "Body"},
+            {"path":  "Clothing"},
+            {"path":  "Outwear"},
+            {"path":  "Hand"}
+        ]
+    },
+
     "outputBasePath": "output",
     "totalImages": 5,
     "imageOptions": {

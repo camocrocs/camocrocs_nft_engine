@@ -8,12 +8,12 @@ from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor
 from shutil import copyfile
 import csv
 from configparser import Config
+from operator import attrgetter
 
 config = Config()
 
 pp = pprint.PrettyPrinter(indent=2)
 NONE = "None"
-TOTAL_IMAGES = config.total_images
 DATA = 'data'
 
 # Set seed to the last block on https://etherscan.io/blocks?p=2 so we get a predictable
@@ -81,6 +81,7 @@ def create_an_image(trait):
 # as many times required until unique
 def create_combo():
     trait = {}
+
     #trait[TRAIT_BG] = random.choices(bg, bg_weights)[0]
     trait[TRAIT_FACE] = random.choices(face, face_weights)[0]
     #trait[TRAIT_TOOTH] = random.choices(tooth, tooth_weights)[0]
@@ -194,7 +195,7 @@ thumbnail_res = config.thumbnail_options.width
 
 def generate_traits():
     # Trigger the above function and generate a list of unique traits
-    for i in range(TOTAL_IMAGES):
+    for i in range(config.total_images):
         traits.append(create_combo())
 
     # Trigger the above function and ensure everything is unique

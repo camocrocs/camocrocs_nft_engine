@@ -4,13 +4,13 @@
         "rarityDelimiter": "#",
         "layersInOrder": [
             {"path":  "Background"},
+            {"path":  "Body"},
+            {"path":  "Clothing"},
+            {"path":  "Outwear"},
             {"path":  "Face"},
             {"path":  "Eyes"},
             {"path":  "Head"},
             {"path":  "Mouth"},
-            {"path":  "Body"},
-            {"path":  "Clothing"},
-            {"path":  "Outwear"},
             {"path":  "Hand"}
         ]
     },
@@ -33,5 +33,9 @@
     },
     "metadataOptions": {
         "outputPath": "metadata"
+    },
+    "runtime": {
+        "useConcurrency": false,
+        "numCores": 4
     }
 }

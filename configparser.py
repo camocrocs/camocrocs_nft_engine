@@ -1,6 +1,8 @@
 import json
 import os
 import os.path
+from builtins import bool
+from os.path import join
 
 class ImageOptions:
     def __init__(self, options):
@@ -57,6 +59,11 @@ class Layer:
         print(f'Trait name: {self.trait_name}')
         print(f'Opacity: {self.opacity}')
 
+class Runtime:
+    def __init__(self, options):
+        self.use_concurrency = bool(options["useConcurrency"])
+        self.cores = int(options["numCores"])
+
 class Config:
     def __init__(self):
         with open('config.json') as fd:
@@ -75,6 +82,8 @@ class Config:
         # Purge layers that have no images
         self._remove_empty_layers()
 
+        self.runtime = Runtime(self.config["runtime"])
+
     def _remove_empty_layers(self):
         for layer in self.layers:
             if layer not in self.layer_images_map:
@@ -85,11 +94,11 @@ class Config:
         out = dict()
         for layer in layers:
             out[layer] = []
-            relpath = f'{layer_base}{os.path.sep}{layer.path}'
+            relpath = join(layer_base, layer.path)
             for root, dirs, files in os.walk(relpath):
                 for name in files:
                     if not name.startswith('.'):
-                        out[layer].append(Image(name, self.rarity_delimiter))
+                        out[layer].append(Image(join(root, name), self.rarity_delimiter))
             if len(out[layer]) == 0:
                 # No images for this layer, remove the layer
                 del out[layer]

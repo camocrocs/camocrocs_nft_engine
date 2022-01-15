@@ -32,7 +32,26 @@
         "height": 400
     },
     "metadataOptions": {
-        "outputPath": "metadata"
+        "outputPath": "metadata",
+        "format": "solana",
+        "name": "Camo Crocs",
+        "symbol": "CROC",
+        "description": "The awesome Camo Crocs collection is available on Magic Eden!",
+        "externalUrl": "https://magiceden.io/marketplace/camo_crocs",
+        "extras": {
+            "seller_fee_basis_points": 500,
+            "edition": 0,
+            "creators": [
+              {
+                "address": "your_wallet",
+                "share": 50
+              },
+              {
+                "address": "your_partner_wallet",
+                "share": 50
+              }
+            ]
+        }
     },
     "runtime": {
         "useConcurrency": false,

@@ -105,16 +105,12 @@ def dump_stats(stats):
 
 if __name__ == '__main__':
     from configparser import Config
+    from meta_writer import MetaWriter
 
     c = Config()
     t = TraitGenerator(c.total_images, c.layer_images_map)
     dump_traits(t.traits)
-    import json
-    import os.path
-    import pathlib
 
-    pathlib.Path(c.output_path).mkdir(parents=True, exist_ok=True)
-    with open(os.path.join(c.output_path, '_metadata.json'), 'w') as fd:
-        json.dump(t.traits_for_meta, fd, indent=4)
-    with open(os.path.join(c.output_path, '_stats.json'), 'w') as fd:
-        json.dump(t.stats, fd, indent=4)
+    m = MetaWriter(c.output_path, c.metadata_options, t.traits_for_meta, t.stats)
+    m.write()
+

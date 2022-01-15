@@ -18,6 +18,22 @@ class ImageOptions:
         print(f'Resolution: {self.width}x{self.height}')
 
 
+# Data structures shared between modules
+class MetadataOptions:
+    def __init__(self, options):
+        self.path = options["outputPath"]
+        self.format = options["format"]
+        self.name = options["name"]
+        self.description = options["description"]
+        self.symbol = options["symbol"]
+        self.external_url = options["externalUrl"]
+        self.extras = options["extras"]
+
+    def dump(self):
+        print(f'Path: {self.path}')
+        print(f'Format: {self.format}')
+
+
 # Represents a single image and its rarity
 # Format must be png
 class Image:
@@ -30,7 +46,7 @@ class Image:
         basename, _ = os.path.splitext(filename)
         rarity = None
         t = basename.split(rarityDelimiter)
-        traitval = t[0]
+        traitval = os.path.basename(t[0])
         if len(t) > 1:
             rarity = float(t[1])
         return (traitval, rarity)
@@ -71,3 +87,5 @@ class Trait:
     def __init__(self, layer_image_map, token_id=0):
         self.token_id = token_id
         self.layer_image_map = layer_image_map
+
+

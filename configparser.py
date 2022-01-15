@@ -2,7 +2,7 @@ import json
 import os
 import os.path
 from os.path import join
-from model import Image, ImageOptions, Layer, Runtime
+from model import Image, ImageOptions, MetadataOptions, Layer, Runtime
 
 
 # Parses config.json and converts to data structures
@@ -14,7 +14,7 @@ class Config:
         self.output_path = self.config["outputBasePath"]
         self.image_options = ImageOptions(self.config["imageOptions"])
         self.thumbnail_options = ImageOptions(self.config["thumbnailOptions"])
-        self.metadata_path = self.config["metadataOptions"]["outputPath"]
+        self.metadata_options = MetadataOptions(self.config["metadataOptions"])
         self.layers_path = self.config["layers"]["layersBasePath"]
         self.rarity_delimiter = self.config["layers"]["rarityDelimiter"]
         self.layers = []
@@ -66,8 +66,9 @@ class Config:
     def dump(self):
         print(f'Total images: {self.total_images}')
         print(f'Output base path: {self.output_path}')
-        print(f'Metadata path: {self.metadata_path}')
-        print(f'Layers path: {self.layers_path}')
+        print('\nMetadata options:')
+        self.metadata_options.dump()
+        print(f'\nLayers path: {self.layers_path}')
         print(f'Rarity delimiter: {self.rarity_delimiter}')
         print('\nImage Options:')
         self.image_options.dump()

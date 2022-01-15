@@ -4,6 +4,7 @@ from concurrent.futures import ProcessPoolExecutor
 from os.path import join
 import pathlib
 
+
 # Generates images based on traits
 class ImageGenerator:
     # layers_in_order = [Layer] in the order to be rendered
@@ -47,6 +48,7 @@ class ImageGenerator:
         thumb_file = f'{trait.token_id}{self.thumbnail_options.extn}'
         thumb.save(f'{self.thumbnail_path}/{thumb_file}', quality=self.thumbnail_options.jpg_quality)
         print(f'{trait.token_id} generated')
+
 
 if __name__ == '__main__':
     from configparser import Config

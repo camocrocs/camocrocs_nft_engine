@@ -1,13 +1,9 @@
 import random
+from model import Trait
 
 # Trait name for token id
 TOKENID = "tokenId"
 
-class Trait:
-    # layer_image_map = {Layer: Image}
-    def __init__(self, layer_image_map, token_id=0):
-        self.token_id = token_id
-        self.layer_image_map = layer_image_map
 
 # Generates unique traits
 class TraitGenerator:

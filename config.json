@@ -54,7 +54,6 @@
         }
     },
     "runtime": {
-        "useConcurrency": false,
-        "numCores": 4
+        "useConcurrency": true
     }
 }

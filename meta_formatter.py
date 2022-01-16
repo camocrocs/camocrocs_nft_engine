@@ -65,7 +65,8 @@ class SolMetaFormatter(MetaFormatter):
                 ],
                 'category': 'image',
                 'creators': None
-            }
+            },
+            'compiler': 'Camo Crocs NFT Engine'
         }
         return data
 
@@ -74,33 +75,3 @@ class EthMetaFormatter(MetaFormatter):
     def __init__(self, options):
         super().__init__(options)
 
-
-"""
-def meta_template():
-    data = {
-        'name': Template('Camo Crocs #$id'),
-        'symbol': 'CROC',
-        'description': "Officers! We have confirmed that thousands of naughty crocodiles are crawling around the blockchain. Intel has it that they are masters of camouflage and can blend in with anything. The environment, other animals, humans ... it is suspected that they even impersonate different cultures. Don't get too close, they bite worse than people. Your mission is to catch them all and assign owners bold enough to tame them.",
-        'seller_fee_basis_points': 500,
-        'image': Template('http://ipfs.io/ipfs/$uri'),
-        'external_url': 'https://www.camocrocsnft.com',
-        'edition': 0,
-        'attributes': None,
-        'properties': {
-            'files': [
-                {
-                    'uri': Template('http://ipfs.io/ipfs/$uri'),
-                    'type': 'image/jpg'
-                }
-            ],
-            'category': 'image',
-            'creators': [
-                {
-                    'address': 'F8dgEJPJCtroKb6ykozT6n9y1xPoNx7j3Uo3eeBYZASo',
-                    'share': 100
-                }
-            ]
-        }
-    }
-    return data
-"""

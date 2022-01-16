@@ -53,7 +53,9 @@ class TraitGenerator:
             self.traits_for_meta.append(combo[0])
             self.traits.append(combo[1])
 
-        print(f'Total Traits: {len(self.traits_for_meta)}, Are Unique?: {self._all_unique(self.traits_for_meta)}')
+        if not self._all_unique(self.traits_for_meta):
+            raise Exception('Found duplicates in generated traits. This should not have happened. Contact devs.')
+        print(f'Generated {len(self.traits_for_meta)} traits and confirmed uniqueness')
 
         # Add token id to traits - do this after the unique check because
         # everything will look unique otherwise due to the token id

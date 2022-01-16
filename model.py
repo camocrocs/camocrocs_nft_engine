@@ -1,5 +1,5 @@
 import os.path
-
+from multiprocessing import cpu_count
 
 # Data structures shared between modules
 class ImageOptions:
@@ -79,7 +79,7 @@ class Layer:
 class Runtime:
     def __init__(self, options):
         self.use_concurrency = bool(options["useConcurrency"])
-        self.cores = int(options["numCores"])
+        self.cores = cpu_count()
 
 
 class Trait:

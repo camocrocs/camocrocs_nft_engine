@@ -59,6 +59,6 @@ if __name__ == '__main__':
     from trait_generator import TraitGenerator
 
     c = Config()
-    t = TraitGenerator(c.total_images, c.layer_images_map)
+    t = TraitGenerator(c)
     m = MetaWriter(t.traits_for_meta, t.stats, c)
     m.write()

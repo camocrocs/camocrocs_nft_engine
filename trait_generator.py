@@ -7,10 +7,12 @@ TOKENID = "tokenId"
 
 # Generates unique traits
 class TraitGenerator:
-    def __init__(self, total_images, layer_images_map):
-        self.total_images = total_images
+    def __init__(self, config):
+        self.total_images = config.total_images
         # {Layer:[Image]}
-        self.layer_images_map = layer_images_map
+        self.layer_images_map = config.layer_images_map
+        if config.runtime.use_random_seed:
+            random.seed(config.runtime.random_seed)
         # [{trait_name : trait_value}]
         # For easier metadata writing purposes
         self.traits_for_meta = list()
@@ -110,7 +112,7 @@ if __name__ == '__main__':
     from meta_writer import MetaWriter
 
     c = Config()
-    t = TraitGenerator(c.total_images, c.layer_images_map)
+    t = TraitGenerator(c)
     dump_traits(t.traits)
 
     m = MetaWriter(c.output_path, c.metadata_options, t.traits_for_meta, t.stats)

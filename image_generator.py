@@ -13,6 +13,7 @@ class ImageGenerator:
         self.traits = traits_full
         self.layers = config.layers
         self.image_options = config.image_options
+        self.generate_thumbnails = config.generate_thumbnails
         self.thumbnail_options = config.thumbnail_options
         self.image_path = join(config.output_path, 'images')
         self.thumbnail_path = join(config.output_path, 'thumbnails')
@@ -43,10 +44,11 @@ class ImageGenerator:
         # Save final image
         file_name = f'{trait.token_id}{self.image_options.extn}'
         blend.save(f'{self.image_path}/{file_name}', quality=self.image_options.jpg_quality)
-        # And thumbnail
-        thumb = blend.convert('RGB').resize((self.thumbnail_options.width, self.thumbnail_options.height))
-        thumb_file = f'{trait.token_id}{self.thumbnail_options.extn}'
-        thumb.save(f'{self.thumbnail_path}/{thumb_file}', quality=self.thumbnail_options.jpg_quality)
+        # And thumbnail if enabled
+        if self.thumbnail_options:
+            thumb = blend.convert('RGB').resize((self.thumbnail_options.width, self.thumbnail_options.height))
+            thumb_file = f'{trait.token_id}{self.thumbnail_options.extn}'
+            thumb.save(f'{self.thumbnail_path}/{thumb_file}', quality=self.thumbnail_options.jpg_quality)
         print(f'{trait.token_id} generated')
 
 
@@ -55,6 +57,6 @@ if __name__ == '__main__':
     from trait_generator import TraitGenerator
 
     c = Config()
-    t = TraitGenerator(c.total_images, c.layer_images_map)
+    t = TraitGenerator(c)
     i = ImageGenerator(t.traits, c)
     i.start()

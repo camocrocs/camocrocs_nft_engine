@@ -13,7 +13,8 @@ class Config:
         self.total_images = int(self.config["totalImages"])
         self.output_path = self.config["outputBasePath"]
         self.image_options = ImageOptions(self.config["imageOptions"])
-        self.thumbnail_options = ImageOptions(self.config["thumbnailOptions"])
+        self.generate_thumbnails = bool(self.config["generateThumbnails"])
+        self.thumbnail_options = ImageOptions(self.config["thumbnailOptions"]) if self.generate_thumbnails else None
         self.metadata_options = MetadataOptions(self.config["metadataOptions"])
         self.layers_path = self.config["layers"]["layersBasePath"]
         self.rarity_delimiter = self.config["layers"]["rarityDelimiter"]

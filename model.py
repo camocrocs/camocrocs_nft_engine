@@ -80,6 +80,8 @@ class Runtime:
     def __init__(self, options):
         self.use_concurrency = bool(options["useConcurrency"])
         self.cores = cpu_count()
+        self.use_random_seed = bool(options["useRandomSeed"])
+        self.random_seed = int(options["randomSeed"]) if self.use_random_seed else 0
 
 
 class Trait:

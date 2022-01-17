@@ -3,12 +3,10 @@ import json
 from concurrent.futures import ProcessPoolExecutor
 from os.path import join
 from meta_formatter import SolMetaFormatter, EthMetaFormatter
+from configparser import FORMAT_SOLANA
 from trait_generator import TOKENID
 from functools import partial
 from math import floor
-
-FORMAT_SOLANA = "solana"
-FORMAT_ETH = "ethereum"
 
 
 # Writes generated metadata to files
@@ -42,7 +40,7 @@ class MetaWriter:
         formatter = SolMetaFormatter(self.options, self.image_format) if self.options.format == FORMAT_SOLANA else EthMetaFormatter(self.options, self.image_format)
         if self.runtime.use_concurrency:
             with ProcessPoolExecutor() as executor:
-                executor.map(partial(self._write_a_trait, formatter), self.traits, chunksize=floor(len(self.traits)/self.runtime.cores))
+                executor.map(partial(self._write_a_trait, formatter), self.traits, chunksize=floor(len(self.traits) / self.runtime.cores))
         else:
             for t in self.traits:
                 self._write_a_trait(formatter, t)

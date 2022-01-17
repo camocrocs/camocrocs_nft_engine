@@ -4,6 +4,9 @@ import os.path
 from os.path import join
 from model import Image, ImageOptions, MetadataOptions, Layer, Runtime
 
+FORMAT_SOLANA = "solana"
+FORMAT_ETH = "ethereum"
+
 
 # Parses config.json and converts to data structures
 class Config:

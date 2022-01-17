@@ -2,6 +2,7 @@ import os
 from os.path import join
 from pathlib import Path
 import json
+from configparser import FORMAT_SOLANA
 
 ok = '\u2713'
 notok = '\u2717'
@@ -93,6 +94,14 @@ class Validator:
                 ret = ret and _matches(self.config.metadata_options.description, meta["description"], file)
                 ret = ret and _matches(self.config.metadata_options.external_url, meta["external_url"], file)
                 # Check blockchain specifics
+                if self.config.metadata_options.format == FORMAT_SOLANA:
+                    ret = ret and _matches(f'{self.config.metadata_options.extras["symbol"]}', meta["symbol"], file)
+                    ret = ret and _matches(str(f'{self.config.metadata_options.extras["edition"]}'), str(meta["edition"]), file)
+                    ret = ret and _matches(int(f'{self.config.metadata_options.extras["seller_fee_basis_points"]}'), int(meta["seller_fee_basis_points"]), file)
+                    expected = self.config.metadata_options.extras["creators"]
+                    found = meta["properties"]["creators"]
+                    ret = ret and _matches(expected, found, file)
+
                 # Check if attribute counts match
 
         # Verify if images are the expected resolution

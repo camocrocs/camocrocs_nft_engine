@@ -34,7 +34,7 @@
     },
     "metadataOptions": {
         "outputPath": "metadata",
-        "format": "ethereum",
+        "format": "solana",
         "name": "Camo Crocs",
         "description": "The awesome Camo Crocs collection is available on Magic Eden!",
         "externalUrl": "https://magiceden.io/marketplace/camo_crocs",

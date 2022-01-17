@@ -24,6 +24,7 @@
         "width": 2048,
         "height": 2048
     },
+    "generateThumbnails": true,
     "thumbnailOptions": {
         "outputPath": "thumbnails",
         "format": "jpg",
@@ -54,6 +55,8 @@
         }
     },
     "runtime": {
-        "useConcurrency": true
+        "useConcurrency": true,
+        "useRandomSeed": false,
+        "randomSeed": 14015075
     }
 }

@@ -84,16 +84,15 @@ class Validator:
             print(f'{notok} Expected {total} entries in {aggmeta} but found {len(meta)}')
 
         # Verify that metadata files have expected name, description etc.
-        print(f'Checking if each metadata file has the expected name, symbol and all that crap')
+        print(f'Checking if each metadata file has the expected name, description and all that crap')
         for i in range(0, total):
             file = join(metapath, f'{i}.json')
             with open(file, 'r') as fd:
                 meta = json.load(fd)
                 ret = ret and _matches(f'{self.config.metadata_options.name} #{i}', meta["name"], file)
-                ret = ret and _matches(self.config.metadata_options.symbol, meta["symbol"], file)
                 ret = ret and _matches(self.config.metadata_options.description, meta["description"], file)
                 ret = ret and _matches(self.config.metadata_options.external_url, meta["external_url"], file)
-                # Check creator wallet if solana
+                # Check blockchain specifics
                 # Check if attribute counts match
 
         # Verify if images are the expected resolution

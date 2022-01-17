@@ -32,9 +32,8 @@ class SolMetaFormatter(MetaFormatter):
 
     def format(self, trait):
         data = self._template()
-        # data['attributes'] = extract_attributes(imgdata)
         data['name'] = data['name'].substitute({'name': self.options.name, 'id': trait[TOKENID]})
-        data['symbol'] = data['symbol'].substitute({'symbol': self.options.symbol})
+        data['symbol'] = data['symbol'].substitute({'symbol': self.options.extras['symbol']})
         data['description'] = data['description'].substitute({'description': self.options.description})
         data['external_url'] = data['external_url'].substitute({'external_url': self.options.external_url})
         data['image'] = data['image'].substitute({'extn': self.image_format})
@@ -72,6 +71,26 @@ class SolMetaFormatter(MetaFormatter):
 
 
 class EthMetaFormatter(MetaFormatter):
-    def __init__(self, options):
-        super().__init__(options)
+    def __init__(self, options, image_format):
+        super().__init__(options, image_format)
+
+    def format(self, trait):
+        data = self._template()
+        data['name'] = data['name'].substitute({'name': self.options.name, 'id': trait[TOKENID]})
+        data['description'] = data['description'].substitute({'description': self.options.description})
+        data['external_url'] = data['external_url'].substitute({'external_url': self.options.external_url})
+        data['image'] = data['image'].substitute({'extn': self.image_format})
+        data['attributes'] = _extract_attributes(trait)
+        return data
+
+    def _template(self):
+        data = {
+            'name': Template('$name #$id'),
+            'description': Template('$description'),
+            'image': Template('image.$extn'),
+            'external_url': Template('$external_url'),
+            'attributes': None,
+            'compiler': 'Camo Crocs NFT Engine'
+        }
+        return data
 

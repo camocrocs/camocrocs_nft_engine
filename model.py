@@ -25,7 +25,6 @@ class MetadataOptions:
         self.format = options["format"]
         self.name = options["name"]
         self.description = options["description"]
-        self.symbol = options["symbol"]
         self.external_url = options["externalUrl"]
         self.extras = options["extras"]
 

@@ -39,7 +39,7 @@ class MetaWriter:
 
     def _write_individual_meta(self):
         pathlib.Path(self.meta_path).mkdir(parents=True, exist_ok=True)
-        formatter = SolMetaFormatter(self.options, self.image_format) if self.options.format == FORMAT_SOLANA else EthMetaFormatter(self.options)
+        formatter = SolMetaFormatter(self.options, self.image_format) if self.options.format == FORMAT_SOLANA else EthMetaFormatter(self.options, self.image_format)
         if self.runtime.use_concurrency:
             with ProcessPoolExecutor() as executor:
                 executor.map(partial(self._write_a_trait, formatter), self.traits, chunksize=floor(len(self.traits)/self.runtime.cores))

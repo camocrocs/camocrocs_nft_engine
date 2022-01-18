@@ -62,6 +62,8 @@ class Config:
                 total_prob = total_prob + image.rarity
             else:
                 images_missing_rarity = images_missing_rarity + 1
+        if images_missing_rarity == 0:
+            return
         rarity_per_remaining = (100 - total_prob) / images_missing_rarity
         for image in images:
             if not image.rarity:

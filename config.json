@@ -49,6 +49,9 @@
             ]
         }
     },
+    "metadataUpdateOptions": {
+        "imageUris": "_imageuris.csv"
+    },
     "runtime": {
         "useConcurrency": true,
         "useRandomSeed": false,

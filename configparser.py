@@ -2,7 +2,7 @@ import json
 import os
 import os.path
 from os.path import join
-from model import Image, ImageOptions, MetadataOptions, Layer, Runtime
+from model import Image, ImageOptions, MetadataOptions, MetadataUpdateOptions, Layer, Runtime
 
 FORMAT_SOLANA = "solana"
 FORMAT_ETH = "ethereum"
@@ -19,6 +19,9 @@ class Config:
         self.generate_thumbnails = bool(self.config["generateThumbnails"])
         self.thumbnail_options = ImageOptions(self.config["thumbnailOptions"]) if self.generate_thumbnails else None
         self.metadata_options = MetadataOptions(self.config["metadataOptions"])
+        self.metadata_update_options = MetadataUpdateOptions(
+            self.output_path, self.metadata_options.path, self.metadata_options.format,
+            self.total_images, self.config["metadataUpdateOptions"])
         self.layers_path = self.config["layers"]["layersBasePath"]
         self.rarity_delimiter = self.config["layers"]["rarityDelimiter"]
         self.layers = []

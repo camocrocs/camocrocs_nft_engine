@@ -18,7 +18,6 @@ class ImageOptions:
         print(f'Resolution: {self.width}x{self.height}')
 
 
-# Data structures shared between modules
 class MetadataOptions:
     def __init__(self, options):
         self.path = options["outputPath"]
@@ -31,6 +30,24 @@ class MetadataOptions:
     def dump(self):
         print(f'Path: {self.path}')
         print(f'Format: {self.format}')
+        print(f'Name: {self.name}')
+        print(f'Description: {self.description}')
+        print(f'External URL: {self.external_url}')
+        print(f'Extras: {self.extras}')
+
+
+class MetadataUpdateOptions:
+    def __init__(self, basepath, metapath, format, total_images, options):
+        self.uri_file = os.path.join(basepath, options["imageUris"])
+        self.meta_path = os.path.join(basepath, metapath)
+        self.format = format
+        self.count = total_images
+
+    def dump(self):
+        print(f'URI file: {self.uri_file}')
+        print(f'Meta path: {self.meta_path}')
+        print(f'Format: {self.format}')
+        print(f'Count: {self.count}')
 
 
 # Represents a single image and its rarity

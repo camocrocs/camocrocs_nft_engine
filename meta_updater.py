@@ -75,4 +75,6 @@ if __name__ == '__main__':
     c = Config()
     u = SolMetaUpdater(c.metadata_update_options) if \
         c.metadata_options.format == FORMAT_SOLANA else EthMetaUpdater(c.metadata_update_options)
+    print('Updating metadata with image URI')
     u.start()
+    print('Done')

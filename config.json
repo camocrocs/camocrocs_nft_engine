@@ -11,7 +11,7 @@
     },
 
     "outputBasePath": "output",
-    "totalImages": 5,
+    "totalImages": 8,
     "imageOptions": {
         "outputPath": "images",
         "format": "jpg",

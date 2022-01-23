@@ -22,6 +22,8 @@ class TraitGenerator:
         # {trait_name : {trait_value:num_occurrences_of_value}}
         # To track histogram of trait occurrences
         self.stats = dict()
+
+    def generate(self):
         self._generate_unique_traits()
         self._generate_stats()
 
@@ -51,9 +53,14 @@ class TraitGenerator:
 
     def _generate_unique_traits(self):
         for i in range(self.total_images):
-            combo = self._create_combo()
-            self.traits_for_meta.append(combo[0])
-            self.traits.append(combo[1])
+            try:
+                combo = self._create_combo()
+                self.traits_for_meta.append(combo[0])
+                self.traits.append(combo[1])
+            except RecursionError:
+                # We hit recursion depth which means there are not enough base images
+                # Throw exception with the last image index to give user an indication what the max limit could be
+                raise RecursionError(i)
 
         if not self._all_unique(self.traits_for_meta):
             raise Exception('Found duplicates in generated traits. This should not have happened. Contact devs.')
@@ -113,6 +120,11 @@ if __name__ == '__main__':
 
     c = Config()
     t = TraitGenerator(c)
+    try:
+        t.generate()
+    except Exception as e:
+        print(f'Error {e}')
+
     dump_traits(t.traits)
 
     m = MetaWriter(c.output_path, c.metadata_options, t.traits_for_meta, t.stats)

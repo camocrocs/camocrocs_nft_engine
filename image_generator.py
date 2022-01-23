@@ -58,5 +58,6 @@ if __name__ == '__main__':
 
     c = Config()
     t = TraitGenerator(c)
+    t.generate()
     i = ImageGenerator(t.traits, c)
     i.start()

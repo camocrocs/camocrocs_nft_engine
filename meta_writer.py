@@ -58,5 +58,6 @@ if __name__ == '__main__':
 
     c = Config()
     t = TraitGenerator(c)
+    t.generate()
     m = MetaWriter(t.traits_for_meta, t.stats, c)
     m.write()

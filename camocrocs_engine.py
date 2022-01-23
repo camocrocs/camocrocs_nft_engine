@@ -10,6 +10,11 @@ if __name__ == '__main__':
     config = Config()
     print('\nGenerating unique traits...')
     traitgen = TraitGenerator(config)
+    try:
+        traitgen.generate()
+    except Exception as ex:
+        print(f'You have too few base images for a collection of {config.total_images}. Try something less than {ex}.')
+        exit(1)
     print('\nWriting metadata...')
     metawriter = MetaWriter(traitgen.traits_for_meta, traitgen.stats, config)
     metawriter.write()

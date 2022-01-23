@@ -53,7 +53,9 @@ You can verify that the dependencies called out in requirements.txt are installe
 `pip3 freeze`.
 
 ### Preparing base images
-Organize images for each trait into separate directories, then put all such directories into one directory called layers (you can change this name in the config). For example
+To help you get started, this project includes a few low resolution versions of base images from Doodle Crocs NFT. You can use these to test the generation of at most 8 images.
+
+While using your own images, organize images for each trait into separate directories, then put all such directories into one directory called layers (you can change this name in the config). For example
 
 ```
 layers

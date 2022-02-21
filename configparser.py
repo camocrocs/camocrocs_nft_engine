@@ -24,6 +24,8 @@ class Config:
             self.total_images, self.config["metadataUpdateOptions"])
         self.layers_path = self.config["layers"]["layersBasePath"]
         self.rarity_delimiter = self.config["layers"]["rarityDelimiter"]
+        self.input_width = int(self.config["layers"]["inputWidth"])
+        self.input_height = int(self.config["layers"]["inputHeight"])
         self.layers = []
         for layer_options in self.config["layers"]["layersInOrder"]:
             self.layers.append(Layer(layer_options))

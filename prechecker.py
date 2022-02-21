@@ -16,8 +16,8 @@ class Prechecker:
     def validate(self):
         ret = True
         total = self.config.total_images
-        width = self.config.image_options.width
-        height = self.config.image_options.height
+        width = self.config.input_width
+        height = self.config.input_height
         # Check if all images are png and of correct resolution
         # {Layer: [Image]}
         print('Checking base layers')

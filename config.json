@@ -2,6 +2,8 @@
     "layers": {
         "layersBasePath": "layers",
         "rarityDelimiter": "#",
+        "inputWidth": 300,
+        "inputHeight": 300,
         "layersInOrder": [
             {"path":  "Background"},
             {"path":  "Face"},

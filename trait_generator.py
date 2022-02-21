@@ -38,7 +38,8 @@ class TraitGenerator:
         for layer, images in self.layer_images_map.items():
             rarities = [i.rarity for i in images]
             chosen_img = random.choices(images, rarities)[0]
-            trait[layer.trait_name] = chosen_img.trait_value
+            if 'SKIPMETA' not in layer.trait_name:
+                trait[layer.trait_name] = chosen_img.trait_value
             trait_full[layer] = chosen_img
 
         if trait in self.traits_for_meta:
@@ -127,6 +128,6 @@ if __name__ == '__main__':
 
     dump_traits(t.traits)
 
-    m = MetaWriter(c.output_path, c.metadata_options, t.traits_for_meta, t.stats)
+    m = MetaWriter(t.traits_for_meta, t.stats, c)
     m.write()
 
